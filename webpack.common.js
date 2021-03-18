@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   entry: {
     app: "./src/ImageDataReader.js"
@@ -14,15 +16,18 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader"]
-      }
+        test: /\.(jpg|png)$/,
+        use: {
+          loader: 'url-loader',
+        },
+      },
     ]
   },
   output: {
     filename: "danehansen-ImageDataReader.min.js",
     library: ["danehansen", "ImageDataReader"],
-    libraryTarget: "umd"
+    libraryTarget: "umd",
+    path: __dirname,
   },
   externals: [
     {
